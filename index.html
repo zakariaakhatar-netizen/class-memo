@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Class Memo</title>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1f6f64"><link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+<style>
+:root{--bg:#f6f1e7;--card:#fffdf8;--ink:#23312f;--mute:#6b7773;--line:#e3dccb;--acc:#1f6f64;--acc-ink:#fff;--H:#d9822b;--B:#c4452f;--A:#4a6fa5;--K:#8a5a9e;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161d1c;--card:#1f2827;--ink:#ecf0ee;--mute:#9aa8a4;--line:#2f3b39;--acc:#4fb8a8;--acc-ink:#0e1a18;--H:#e8a050;--B:#e8705c;--A:#7ea4d9;--K:#c08ad6;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161d1c;--card:#1f2827;--ink:#ecf0ee;--mute:#9aa8a4;--line:#2f3b39;--acc:#4fb8a8;--acc-ink:#0e1a18;--H:#e8a050;--B:#e8705c;--A:#7ea4d9;--K:#c08ad6;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif}
+#app{max-width:560px;margin:0 auto;padding:16px 14px 40px}
+h1{font:700 26px/1.1 "Iowan Old Style",Georgia,serif;margin:4px 0 2px}
+.sub{color:var(--mute);font-size:13px;margin-bottom:14px}
+.tabs{display:flex;background:var(--line);border-radius:12px;padding:3px;margin-bottom:10px}
+.tabs button{flex:1;border:0;background:none;color:var(--ink);padding:9px 0;border-radius:9px;font:600 14px inherit;font-family:inherit}
+.tabs button.on{background:var(--card);box-shadow:0 1px 3px #0002}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+.chips button{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:7px 4px;font-family:inherit;display:flex;flex-direction:column;align-items:center;line-height:1.15}
+.chips b{font-size:17px}.chips small{font-size:11px;color:var(--mute)}
+.chips button.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}.chips button.on small{color:inherit;opacity:.85}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px}
+.card.list{padding:2px 12px}
+.drow{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.drow>div{text-align:center;flex:1}
+input[type=date],select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;max-width:100%}
+textarea{width:100%;resize:vertical;margin:8px 0}
+.wd{font-size:13px;color:var(--mute);margin-top:4px}
+.ic{width:42px;height:42px;border-radius:12px;border:1.5px solid var(--line);background:none;color:var(--ink);font-size:22px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--mute);margin-top:10px;justify-content:center}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border:0}
+.nm{flex:1;min-width:0;font-weight:600;overflow-wrap:anywhere}
+.bt{display:flex;gap:6px}
+.tk{width:42px;height:42px;border-radius:12px;border:1.5px solid var(--line);background:none;font-size:19px;opacity:.4;padding:0}
+.tk.on{opacity:1;color:#fff}
+.tk.H.on{background:var(--H);border-color:var(--H)}.tk.B.on{background:var(--B);border-color:var(--B)}.tk.A.on{background:var(--A);border-color:var(--A)}.tk.K.on{background:var(--K);border-color:var(--K)}
+.pri{width:100%;border:0;border-radius:12px;background:var(--acc);color:var(--acc-ink);padding:12px;font:700 15px inherit;font-family:inherit}
+.del{border:1.5px solid var(--line);background:none;color:var(--mute);border-radius:10px;padding:8px 12px;font-family:inherit}
+.del.sure{border-color:var(--B);color:var(--B);font-weight:700}
+.empty,.note{color:var(--mute);font-size:14px;text-align:center;padding:10px}
+.cnt{font-size:13px;color:var(--mute);text-align:center;margin:-4px 0 10px}
+table{width:100%;border-collapse:collapse}
+th{font-size:18px;font-weight:400;padding:4px 0}
+th:first-child{text-align:left}
+td{text-align:center;padding:9px 0;border-top:1px solid var(--line);font-weight:700}
+td:first-child{text-align:left;font-weight:600;overflow-wrap:anywhere;padding-right:6px}
+td.zero{color:var(--line);font-weight:400}
+td.H{color:var(--H)}td.B{color:var(--B)}td.A{color:var(--A)}td.K{color:var(--K)}
+.mrow{margin-bottom:10px}
+.chips.g{grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:6px}.chips.g b{font-size:15px}.chips.k{grid-template-columns:1fr 1fr}.chips.k b{font-size:14px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const ORD=["1st","2nd","3rd","4th","5th","6th"];
+const T=[["H","✏️","Homework not done"],["B","⚠️","Misbehaved"],["A","🚪","Absent"],["K","📕","Forgot books"]];
+const MIN="2026-12-01",MAX="2027-07-31";
+const MON=["2026-12","2027-01","2027-02","2027-03","2027-04","2027-05","2027-06","2027-07"];
+const pad=n=>String(n).padStart(2,"0");
+const iso=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const clamp=d=>d<MIN?MIN:d>MAX?MAX:d;
+const pd=s=>{const[a,b,c]=s.split("-").map(Number);return new Date(a,b-1,c)};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const clone=o=>JSON.parse(JSON.stringify(o));
+let S={n:1,st:[],m:{},cls:"1-1"},tab="reg",date=clamp(iso(new Date())),sm=date.slice(0,7),delId=null,status="Saved on this device",tm;
+const gk=()=>S.cls.split("-").map(Number);
+try{const x=JSON.parse(localStorage.getItem("zkmemo"));if(x&&x.st)S=x}catch(e){}
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+
+function setStatus(t){status=t;const e=document.getElementById("st");if(e)e.textContent=t}
+function save(){try{localStorage.setItem("zkmemo",JSON.stringify(S));setStatus("Saved on this device ✓")}catch(e){setStatus("Could not save: storage is blocked")}}
+
+const list=()=>S.st.filter(s=>s.c===S.cls).sort((a,b)=>a.n.localeCompare(b.n));
+const cname=()=>{const[g,k]=gk();return ORD[g-1]+" grade · Group "+k};
+const dayCount=()=>{const m=S.m[date]||{};return list().reduce((n,s)=>n+(m[s.i]||"").length,0)};
+
+function reg(){const L=list(),dm=S.m[date]||{};
+ return `<div class="card"><div class="drow"><button class="ic" data-a="prev" aria-label="Previous day">‹</button><div><input type="date" id="dt" value="${date}" min="${MIN}" max="${MAX}"><div class="wd">${pd(date).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</div></div><button class="ic" data-a="next" aria-label="Next day">›</button></div>
+ <div class="legend">${T.map(t=>`<span>${t[1]} ${t[2]}</span>`).join("")}</div></div>`+
+ (L.length?`<div class="cnt" id="cnt">${dayCount()} tick(s) today in this class</div><div class="card list">${L.map(s=>`<div class="row"><div class="nm">${esc(s.n)}</div><div class="bt">${T.map(t=>`<button class="tk ${t[0]}${(dm[s.i]||"").includes(t[0])?" on":""}" data-a="tk" data-s="${s.i}" data-t="${t[0]}" aria-label="${t[2]}">${t[1]}</button>`).join("")}</div></div>`).join("")}</div>`
+ :`<div class="card empty">No students yet in this class. Open the Students tab to add them.</div>`)}
+
+function sum(){const L=list(),r={};
+ for(const d in S.m){if(sm!=="all"&&d.slice(0,7)!==sm)continue;for(const k in S.m[d]){r[k]=r[k]||{H:0,B:0,A:0,K:0};for(const c of S.m[d][k])r[k][c]++}}
+ const rows=L.map(s=>{const c=r[s.i]||{H:0,B:0,A:0,K:0};return{s,c,t:c.H+c.B+c.A+c.K}}).sort((a,b)=>b.t-a.t||a.s.n.localeCompare(b.s.n));
+ const mo=MON.map(m=>`<option value="${m}"${sm===m?" selected":""}>${pd(m+"-01").toLocaleDateString("en-GB",{month:"long",year:"numeric"})}</option>`).join("");
+ return `<div class="mrow"><select id="sm"><option value="all"${sm==="all"?" selected":""}>All months</option>${mo}</select></div>`+
+ (L.length?`<div class="card"><table><tr><th></th>${T.map(t=>`<th>${t[1]}</th>`).join("")}</tr>${rows.map(x=>`<tr><td>${esc(x.s.n)}</td>${T.map(t=>`<td class="${x.c[t[0]]?t[0]:"zero"}">${x.c[t[0]]||"·"}</td>`).join("")}</tr>`).join("")}</table></div><div class="note">Students with the most ticks come first.</div>`
+ :`<div class="card empty">No students in this class yet.</div>`)}
+
+function stu(){const L=list();
+ return `<div class="card"><label for="nn"><b>Add students to ${cname()}</b></label><textarea id="nn" rows="4" placeholder="One name per line. You can paste a whole list."></textarea><button class="pri" data-a="add">Add to this class</button></div>`+
+ (L.length?`<div class="card list">${L.map(s=>`<div class="row"><div class="nm">${esc(s.n)}</div>${delId===s.i?`<button class="del sure" data-a="del" data-s="${s.i}">Tap again to remove</button>`:`<button class="del" data-a="ask" data-s="${s.i}" aria-label="Remove">✕</button>`}</div>`).join("")}</div><div class="note">Removing a student also removes their ticks.</div>`:"")+bkp()}
+function bkp(){return `<div class="card"><b>Backup</b><div class="note" style="padding:6px 0 10px">Your data lives on this device only. Download a backup now and then. Last backup: ${S.bk||"never"}.</div><button class="pri" data-a="bk">Download backup</button><button class="pri" data-a="rs" style="margin-top:8px;background:none;color:var(--ink);border:1.5px solid var(--line)">Restore from backup</button><input type="file" id="rf" accept=".json,application/json" hidden></div>`}
+
+function render(){
+ document.getElementById("app").innerHTML=`<h1>Class Memo</h1><div class="sub">December 2026 – July 2027 · <span id="st">${status}</span></div>
+ <nav class="tabs">${[["reg","Register"],["sum","Summary"],["stu","Students"]].map(t=>`<button data-a="tab" data-v="${t[0]}" class="${tab===t[0]?"on":""}">${t[1]}</button>`).join("")}</nav>
+ <div class="chips g">${ORD.map((o,i)=>`<button data-a="gr" data-v="${i+1}" class="${gk()[0]==i+1?"on":""}"><b>${o}</b></button>`).join("")}</div><div class="chips k">${[1,2].map(k=>`<button data-a="gp" data-v="${k}" class="${gk()[1]==k?"on":""}"><b>Group ${k}</b></button>`).join("")}</div>`+
+ (tab==="reg"?reg():tab==="sum"?sum():stu())}
+
+function go(n){const d=pd(date);d.setDate(d.getDate()+n);date=clamp(iso(d));render()}
+
+document.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b)return;const a=b.dataset.a,v=b.dataset.v,id=+b.dataset.s;
+ if(a==="tab"){tab=v;delId=null;render()}
+ else if(a==="gr"){S.cls=v+"-"+gk()[1];delId=null;save();render()}
+ else if(a==="gp"){S.cls=gk()[0]+"-"+v;delId=null;save();render()}
+ else if(a==="bk"){const x=document.createElement("a");x.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));x.download="class-memo-backup-"+iso(new Date())+".json";document.body.appendChild(x);x.click();x.remove();S.bk=iso(new Date());save();render()}
+ else if(a==="rs")document.getElementById("rf").click();
+ else if(a==="prev")go(-1);else if(a==="next")go(1);
+ else if(a==="tk"){const t=b.dataset.t,m=S.m[date]||(S.m[date]={});let x=m[id]||"";x=x.includes(t)?x.replace(t,""):x+t;
+  if(x)m[id]=x;else delete m[id];if(!Object.keys(m).length)delete S.m[date];
+  b.classList.toggle("on",x.includes(t));document.getElementById("cnt").textContent=dayCount()+" tick(s) today in this class";save()}
+ else if(a==="add"){const ta=document.getElementById("nn"),have=list().map(s=>s.n.toLowerCase());
+  ta.value.split("\n").map(x=>x.trim()).filter(Boolean).forEach(n=>{if(!have.includes(n.toLowerCase())){S.st.push({i:S.n++,n,c:S.cls});have.push(n.toLowerCase())}});
+  save();render()}
+ else if(a==="ask"){delId=id;render()}
+ else if(a==="del"){S.st=S.st.filter(s=>s.i!==id);for(const d in S.m){delete S.m[d][id];if(!Object.keys(S.m[d]).length)delete S.m[d]}delId=null;save();render()}
+});
+document.addEventListener("change",e=>{
+ if(e.target.id==="rf"){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x||!Array.isArray(x.st)||typeof x.m!=="object")throw 0;if(confirm("Replace everything on this device with this backup?")){S=Object.assign({n:1,st:[],m:{},cls:"1-1"},x);save();render()}}catch(err){alert("This file is not a valid backup.")}};r.readAsText(f)}
+ if(e.target.id==="dt"){if(e.target.value)date=clamp(e.target.value);render()}
+ if(e.target.id==="sm"){sm=e.target.value;render()}
+});
+
+render();
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>
